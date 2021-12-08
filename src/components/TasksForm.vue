@@ -38,7 +38,7 @@
             </div>
             <Button class="btn" >Ajouter tâche</Button>
         </form>
-    {{buildTask}}
+
     </div>
 </template>
 <script>
