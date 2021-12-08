@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    tasks: localStorage.getItem('localstorage_tasks') || [],
+    tasks: JSON.parse(localStorage.getItem('localstorage_tasks')) || [],
     currentTask: {},
   },  
   getters:{
@@ -16,6 +16,7 @@ export default createStore({
 
       state.tasks.push(payload);
     },
+
     SET_CURRENT_TASK(state, taskId){
       console.log('state', state);
       console.log('payload', taskId);
@@ -29,16 +30,16 @@ export default createStore({
       console.log("Task found",taskFound);
     },
     
-    // SAVE_TASKS_LOCAL_STORAGE(state){
-    //   localStorage.setItem(tasks);
-    // }
+    SAVE_TASKS_LOCAL_STORAGE(state){
+      localStorage.setItem('localstorage_tasks', JSON.stringify(state.tasks));
+    },
     // SET_NAME(state, payload){
     //   state.title = payload;
     //   console.log(state.title);
-    // }
+    // },
      initialiseStore(state) {
-      if (localStorage.getItem('localstorage_tasks')) {
-        state.tasks = localStorage.getItem('localstorage_tasks');
+      if (JSON.parse(localStorage.getItem('localstorage_tasks'))){
+        state.tasks = JSON.parse(localStorage.getItem('localstorage_tasks'));
       }
       console.log("state" ,state)
     },

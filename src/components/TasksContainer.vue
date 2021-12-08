@@ -1,6 +1,8 @@
 <template lang="fr">
     <div class="bg-secondary p-2 tasks my-2 my-lg-5 ">
         <h2 class="text-center">Liste des tâches enregistrées</h2>
+
+
         <div v-for="task in getTasks">
             <div :key="task.id" class="row align-middle">
                 <div class='col'>
@@ -11,13 +13,14 @@
                 <div class='col-auto state_checkbox pr-5'>
                     <div class="form-check">
                         <label class="form-check-label mr-5">
-                            Terminée
+                            {{task.finished ? 'Terminée' : 'En cours' }}
                         </label>
                         <input type="checkbox" class="form-check-input" name="" id="" :value="task.value" v-model="task.finished" @change="toggleTaskState($event)">
                     </div>
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 <script>
@@ -47,10 +50,10 @@ export default {
             console.log(e.target.value);
         }
     },
-    beforeCreate() { 
-        console.log("Bef create")    
-        this.$store.commit('initialiseStore', this.getTasks)
-    },
+    // beforeCreate() { 
+    //     console.log("Bef create")    
+    //     this.$store.commit('initialiseStore', this.getTasks)
+    // },
 
 }
 </script>

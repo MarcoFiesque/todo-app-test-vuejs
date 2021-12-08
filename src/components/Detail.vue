@@ -1,17 +1,20 @@
 <template lang="fr">
     <div class="container">
-        <Task :task="task"/>
-        <!-- {{$route.params}}
+        <TaskDetails :task="task"/>
+        <!-- {{$route.params}
         {{task.title}} -->
+        <!-- {{task}} -->
     </div>
 </template>
 <script>
-import Task from './Task.vue';
+    import TaskDetails from './TaskDetails.vue'
+
 
 export default {
     // props: ['id', 'task'],
     components:{
-        Task
+        TaskDetails
+
     },
     data(){
         return{
@@ -22,13 +25,15 @@ export default {
     mounted() {
         this.tasks = this.$store.getters.getTasks
         // console.log(this.tasks);
-        console.log("Taches : ", this.tasks);
+        this.$store.commit('SET_CURRENT_TASK', this.id);
         console.log("Une Tache : ", this.getTask);
+
     },
     computed: {
-        getTasks(){
-            return this.$store.getters.getTasks[this.id];
-        }
+        task(){
+            return this.$store.state.currentTask;
+            // return this.$store.getters.getTasks[this.id];
+        },
     },
     created() {
         this.id = this.$route.params.id;
@@ -37,6 +42,9 @@ export default {
     beforeCreate() { 
         this.$store.commit('SET_CURRENT_TASK', this.id);
     },
+    beforeUnmount(){
+        this.$store.commit('SAVE_TASKS_LOCAL_STORAGE', this.task)
+    }
 
 }
 </script>

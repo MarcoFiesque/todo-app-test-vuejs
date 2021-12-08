@@ -21,6 +21,7 @@ export default {
         'Form': TasksForm,
         'Tasks-container': TasksContainer,
     },
+    
 
 }
 </script>

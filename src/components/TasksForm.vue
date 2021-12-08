@@ -83,6 +83,9 @@ export default {
             }
         }
     },
+     beforeUnmount(){
+        this.$store.commit('SAVE_TASKS_LOCAL_STORAGE', this.$store.state.tasks);
+    }
 }
 </script>
 <style lang="">

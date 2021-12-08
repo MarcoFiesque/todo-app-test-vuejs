@@ -2,18 +2,11 @@
     <div>
         <div class="container">
             <div class="row">
-                <!-- <div class='col' :class="{done: task.finished}"> -->
+                <div class='col px-4' :class="{done: task.finished}">
                     
                     {{task.title}}
 
-                <!-- </div> -->
-                <!-- <div class='col-auto state_checkbox pr-5'>
-                    <div class="form-check">
-                        <label class="form-check-label">
-                        </label>
-                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" v-model="task.finished">
-                    </div>
-                </div> -->
+                </div>
 
             </div>
         </div>
